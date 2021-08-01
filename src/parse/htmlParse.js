@@ -1,11 +1,12 @@
 
 
 const { readHtmlNode, readTagAttrs, isZh, } = require('../utils')
-const { i18nIdentifier } = require('../config.json')
+const { delimiters } = require('../config.json')
 const jsParser = require('./jsParser')
+const textParser = require('./textParser')
 const html5parser = require('html-parse-stringify')
 
-module.exports = content => {
+module.exports = (content) => {
 
   const ast = html5parser.parse(content)
   readHtmlNode(ast, node => {
@@ -20,15 +21,17 @@ module.exports = content => {
       })
     }
     if (node.type === 'text' && isZh(node.content)) {
-      const content = node.content
-      let newContent = content.trim(node.content)
-      newContent = content.replace(newContent, `${i18nIdentifier}('${newContent}')`)
-      node.content = newContent
+
+      node.content = textParser(node.content, delimiters)
+
+
+      // newContent = content.replace(newContent, `${i18nIdentifier}('${newContent}')`)
+      // node.content = newContent
       // console.log(node.content)
     }
   })
 
-  // console.log(html5parser.stringify(ast))
+  console.log(html5parser.stringify(ast))
 
   return content
 }

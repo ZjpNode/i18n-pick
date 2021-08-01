@@ -1,4 +1,5 @@
-{ 
-  "quote": "single" ,
-  "i18nIdentifier": "$t"
+{
+  "quote": "single",
+  "i18nIdentifier": "$t",
+  "delimiters": ["{{", "}}"]
 }

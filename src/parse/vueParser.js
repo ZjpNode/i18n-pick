@@ -20,7 +20,7 @@ module.exports = content => {
   Object.keys(template.attrs).forEach(key => {
     templateAttrs +=` ${key}="${template.attrs[key]}"`
   })
-  const scriptContent = jsParser(script.content, { isVue: true })
+  const scriptContent = jsParser(script.content, { isVueScript: true })
   let scriptAttrs = ''
   Object.keys(script.attrs).forEach(key => {
     scriptAttrs +=` ${key}="${script.attrs[key]}"`

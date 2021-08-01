@@ -5,6 +5,7 @@ function getParse (type) {
   try {
     return require(`./${type}Parser`)
   } catch (error) {
+    console.error(error)
     return content => {
       console.warn(`暂不支持解析${type}文件`)
       return content
